@@ -1,37 +1,15 @@
-extern crate base64;
-use std::u8;
-use base64::{Engine as _, engine::general_purpose};
-
-pub fn hex_to_base64(hex: String) -> String {
-
-    // Make vector of bytes from octets
-    // u8 0 -> 255, smalled integer type
-    // what is an octet? 
-    let mut bytes = Vec::new();
-    println!("hex: {:?}", hex);
-
-    for i in 0..(hex.len()/2) {
-        //from_str_radix: Converts a string slice in a given base to an integer.
-        let res = u8::from_str_radix(&hex[2*i .. 2*i+2], 16);
-        println!("--i:{:?}--of--{:?}-", i, (hex.len()/2));
-        println!("test op: {} {} {}", i, 2*i, 2*i+2);
-        println!("hex[]: {:?}", &hex[2*i .. 2*i+2]);
-        println!("str_radix: {:#?}", u8::from_str_radix(&hex[2*i .. 2*i+2], 16));
-        println!("res: {:?}", res);
-        println!("()()()()()()()");
-
-
-        match res {
-            Ok(v) => bytes.push(v),
-            Err(e) => println!("Problem with hex: {}", e),
-        };
-    };
-
-    general_purpose::STANDARD.encode(&bytes) // now convert from Vec<u8> to b64-encoded String
-}
+// use crate::set_1::hex_to_base::calculate;
+mod set_1;
 
 fn main() {
     let our_string: String = String::from("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d");
-    let base64 = hex_to_base64(our_string);
-    println!("converted: {:?}", base64);
+    let base64 =  set_1::hex_to_base::calculate(our_string);
+    println!("converted hex_to_base: {:?}", base64);
+
+    let first = String::from("1c0111001f010100061a024b53535009181c");
+    let second: String = String::from("686974207468652062756c6c277320657965");
+    let fixed_xor = set_1::xor::convert(first, second);
+    println!("converted to xor: {:?}", fixed_xor);
+
+
 }
