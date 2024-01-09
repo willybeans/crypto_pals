@@ -15,9 +15,8 @@ pub fn convert(first: String, second: String) ->  String {
 // so for every 2 char's of hex, you get the associated 'unsigned' output
   let byte1 = hex::decode(first).unwrap();
   let byte2 = hex::decode(second).unwrap();
-  println!("byte1 and 2: {:?} ::: {:?}", byte1 , byte2);
-  println!("byte1 and 2: {:?} ::: {:?}", byte1 , byte2);
-  println!("test: {:?}", hex::encode("1"));
+  println!("byte1 and 2: \n 1: {:?} \n ::: \n 2: {:?}", byte1 , byte2);
+  // println!("test what encode does: {:?}", hex::encode("1"));
 
   // trying to understand exactly how zip works
   let xor_bytes: Vec<u8> = byte1
